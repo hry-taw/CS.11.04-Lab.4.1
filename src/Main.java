@@ -43,13 +43,14 @@ public class Main {
 
     // 3. encryptThis
     public static String encryptThis(String str){
+        str += " ";
         String rString = "";
         int fLetter = 0;
         int lLetter = 0;
         rString += (int)str.charAt(fLetter);
-        for (int i = 1; i < str.length() - 1; i++) {
-            if (str.charAt(i + 1) == ' '){
-                lLetter = i;
+        for (int i = 1; i < str.length(); i++) {
+            if (str.charAt(i) == ' '){
+                lLetter = i - 1;
             }
             if (str.charAt(i) == ' '){
                 rString += (lLetter != fLetter ? str.charAt(lLetter) : "") + (lLetter - fLetter > 1 ? str.substring(fLetter + 2, lLetter) + str.charAt(fLetter + 1) : "");
@@ -59,13 +60,14 @@ public class Main {
                 rString += " " + (int)str.charAt(fLetter);
             }
         }
-        lLetter = str.length() - 1;
-        rString += (lLetter != fLetter ? str.charAt(lLetter) : "") + (lLetter - fLetter > 1 ? str.substring(fLetter + 2, lLetter) + str.charAt(fLetter + 1) : "");
+        // lLetter = str.length() - 1;
+        // rString += (lLetter != fLetter ? str.charAt(lLetter) : "") + (lLetter - fLetter > 1 ? str.substring(fLetter + 2, lLetter) + str.charAt(fLetter + 1) : "");
         return rString;
     }
 
     // 4. decipherThis
     public static String decipherThis(String str){
+        str += " ";
         String rString = "";
         int[] fLetter = new int[]{0, 0};
         int lLetter = 0;
@@ -74,9 +76,9 @@ public class Main {
             fLetter[1] = j;
         }
         rString += (char)Integer.parseInt(str.substring(fLetter[0], fLetter[1] + 1));
-        for (int i = fLetter[1] + 1; i < str.length() - 1; i++) {
-            if (str.charAt(i + 1) == ' '){
-                lLetter = i;
+        for (int i = fLetter[1] + 1; i < str.length(); i++) {
+            if (str.charAt(i) == ' '){
+                lLetter = i - 1;
             }
             if (str.charAt(i) == ' '){
                 rString += (lLetter != fLetter[1] ? str.charAt(lLetter) : "") + (lLetter - fLetter[1] > 1 ? str.substring(fLetter[1] + 2, lLetter) + str.charAt(fLetter[1] + 1) : "");
@@ -89,8 +91,8 @@ public class Main {
                 rString += " " + (char)Integer.parseInt(str.substring(fLetter[0], fLetter[1] + 1));
             }
         }
-        lLetter = str.length() - 1;
-        rString += (lLetter != fLetter[1] ? str.charAt(lLetter) : "") + (lLetter - fLetter[1] > 1 ? str.substring(fLetter[1] + 2, lLetter) + str.charAt(fLetter[1] + 1) : "");
+        // lLetter = str.length() - 1;
+        // rString += (lLetter != fLetter[1] ? str.charAt(lLetter) : "") + (lLetter - fLetter[1] > 1 ? str.substring(fLetter[1] + 2, lLetter) + str.charAt(fLetter[1] + 1) : "");
         return rString;
     }
 
