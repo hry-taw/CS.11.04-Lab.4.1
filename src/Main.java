@@ -47,7 +47,7 @@ public class Main {
         int fLetter = 0;
         int lLetter = 0;
         rString += (int)str.charAt(fLetter);
-        for (int i = 2; i < str.length() - 1; i++) {
+        for (int i = 1; i < str.length() - 1; i++) {
             if (str.charAt(i + 1) == ' '){
                 lLetter = i;
             }
