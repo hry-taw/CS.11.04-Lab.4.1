@@ -36,7 +36,7 @@ public class Main {
     public static String reverseInteger(int num){
         String returnString = "";
         for (int i = String.valueOf(num).length() - 1; i >= 0; i--) {
-            returnString = returnString + String.valueOf(num).charAt(i);
+            returnString += String.valueOf(num).charAt(i);
         }
         return returnString;
     }
@@ -44,45 +44,45 @@ public class Main {
     // 3. encryptThis
     public static String encryptThis(String str){
         str += " ";
-        String rString = "";
+        StringBuilder rString = new StringBuilder();
         int fLetter = 0;
-        rString += (int)str.charAt(fLetter);
+        rString.append((int)str.charAt(fLetter));
         for (int i = 1; i < str.length(); i++) {
             if (str.charAt(i) == ' '){
-                rString += (i - 1 != fLetter ? str.charAt(i - 1) : "") + (i - 1 - fLetter > 1 ? str.substring(fLetter + 2, i - 1) + str.charAt(fLetter + 1) : "");
+                rString.append(i - 1 != fLetter ? str.charAt(i - 1) : "").append(i - 1 - fLetter > 1 ? str.substring(fLetter + 2, i - 1) + str.charAt(fLetter + 1) : "");
             }
             if (str.charAt(i - 1) == ' '){
                 fLetter = i;
-                rString += " " + (int)str.charAt(fLetter);
+                rString.append(" ").append((int)str.charAt(fLetter));
             }
         }
-        return rString;
+        return rString.toString();
     }
     // public static String encryptThis(String str){ str += " "; String rString = ""; int fLetter = 0; int i - 1 = 0; rString += (int)str.charAt(fLetter); for (int i = 1; i < str.length(); i++) { if (str.charAt(i) == ' '){ i - 1 = i - 1; } if (str.charAt(i) == ' '){ rString += (i - 1 != fLetter ? str.charAt(i - 1) : "") + (i - 1 - fLetter > 1 ? str.substring(fLetter + 2, i - 1) + str.charAt(fLetter + 1) : ""); } if (str.charAt(i - 1) == ' '){ fLetter = i; rString += " " + (int)str.charAt(fLetter); } } return rString; }
 
     // 4. decipherThis
     public static String decipherThis(String str){
         str += " ";
-        String rString = "";
+        StringBuilder rString = new StringBuilder();
         int[] fLetter = new int[]{0, 0};
         fLetter[0] = 0;
         for (int j = 0; Character.isDigit(str.charAt(j)); j++){
             fLetter[1] = j;
         }
-        rString += (char)Integer.parseInt(str.substring(fLetter[0], fLetter[1] + 1));
+        rString.append((char)Integer.parseInt(str.substring(fLetter[0], fLetter[1] + 1)));
         for (int i = fLetter[1] + 1; i < str.length(); i++) {
             if (str.charAt(i) == ' '){
-                rString += (i - 1 != fLetter[1] ? str.charAt(i - 1) : "") + (i - 1 - fLetter[1] > 1 ? str.substring(fLetter[1] + 2, i - 1) + str.charAt(fLetter[1] + 1) : "");
+                rString.append(i - 1 != fLetter[1] ? str.charAt(i - 1) : "").append(i - 1 - fLetter[1] > 1 ? str.substring(fLetter[1] + 2, i - 1) + str.charAt(fLetter[1] + 1) : "");
             }
             if (str.charAt(i - 1) == ' '){
                 fLetter[0] = i;
                 for (int j = fLetter[0]; Character.isDigit(str.charAt(j)); j++){
                     fLetter[1] = j;
                 }
-                rString += " " + (char)Integer.parseInt(str.substring(fLetter[0], fLetter[1] + 1));
+                rString.append(" ").append((char)Integer.parseInt(str.substring(fLetter[0], fLetter[1] + 1)));
             }
         }
-        return rString;
+        return rString.toString();
     }
 
 }
